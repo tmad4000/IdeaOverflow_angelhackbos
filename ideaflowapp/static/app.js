@@ -124,7 +124,9 @@ lib('home', {
                 data: '/ajax/autocomplete/?autocomplete=' //jsonData2
             });      */                  
  //       });
-            $('#idea-txt-1').magicSuggest({
+
+
+            window.sugg=$('#idea-txt-1').magicSuggest({
                 // selectionPosition: 'right',
                 selectionCls: 'selectedx',
                 renderer: function(idea){
@@ -140,10 +142,17 @@ lib('home', {
                 expanded:true,
                 expandOnFocus:true,
                 maxDropHeight:'500px',
-
+                matchCase:false,
+                strictSuggest:false,
                 name:'query',
                 data: '/ajax/autocomplete/' //jsonData2
-            });                  
+            });        
+            $(window.sugg).on('beforeload',function(sugg) {
+                //alert(sugg)
+                //window.sugg.enable()
+                //window.sugg.expand()
+            })
+
 
 
     },
