@@ -1,3 +1,5 @@
+
+
 lib('home', {
 
     init: function() {
@@ -11,12 +13,12 @@ lib('home', {
         this.titleextract();
         
         $('#idea-txt-2').focus();
-        window.setTimeout(function() {
+  /*      window.setTimeout(function() {
 //            $('#idea-txt-1').focus();
 //            $('#idea-txt-2').val('asdf');
             $('#idea-txt-1').click();
             $('#idea-txt-2').focus();
-        },500)
+        },500)*/
        // $('body').on('click','span.label',function() {alert('a')})
         
 //        this.color_ideas();
@@ -146,12 +148,23 @@ lib('home', {
                 strictSuggest:false,
                 name:'query',
                 data: '/ajax/autocomplete/' //jsonData2
-            });        
-            $(window.sugg).on('beforeload',function(sugg) {
+            });
+//            $(window.sugg).on('beforeload',function(sugg) {
                 //alert(sugg)
                 //window.sugg.enable()
-                //window.sugg.expand()
-            })
+                      window.setTimeout(function() {
+                        //alert()
+                        //$('#idea-txt-1').click()
+                        $('#ms-input-0').click()
+                        $('#idea-txt-2').click()
+                        $('#ms-input-0').click()
+                        $('#idea-txt-2').focus();
+
+            window.sugg.expand()
+                    },200)
+
+
+  //          })
 
 
 
@@ -301,7 +314,7 @@ lib('ideas', {
                 lib('ideas').upvote(response.id, function(res) { $('.li-idea[data-id="' + response.id + '"] .numvotes').html(res.upvotes) });
             });
             
-            $('.idealist').prepend(li);
+            $('#listcontainer > .idealist').prepend(li);
         });
     }
 });

@@ -68,6 +68,8 @@ def addidea(request):
         idea.title = request.POST['title']
         idea.text = request.POST['text']
         idea.tags = request.POST['tags']
+        #for tag in tags:
+        #    getIdeaFromString(tag).addTag(idea)
         idea.save()
         
         return to_json(idea)
@@ -84,13 +86,20 @@ def addideas_from_mockdb(request):
   '''
 
 def addsuggestion(request):
+    #print "addedBEFORE"
     if request.method == 'POST':
+        #print "added"
         suggestion = Suggestion()
         suggestion.idea = Idea.objects.get(id=int(request.POST['idea']))
         suggestion.text = request.POST['text']
         suggestion.save()
         
         return to_json(suggestion)    
+
+def getIdeaFromString(str):
+    ideas = Idea.objects.filter(title__icontains=request.GET['title'].strip())
+    idea=ideas[0]
+    return to_json([{'id':idea.id,'name':idea.title,'text':idea.text,'status':0,'tags':idea.tags,'upvotes':idea.upvotes}])
 
 def getIdeaById(request):
 
